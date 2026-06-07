@@ -45,7 +45,7 @@ class AppointmentsController < ApplicationController
 
     def destroy
         appointment = Appointment.find(params[:id])
-        provider.destroy
+        appointment.destroy
         head :no_content
     rescue ActiveRecord::RecordNotFound
         render json: {error: 'Appointment not found'}, status: :not_found
