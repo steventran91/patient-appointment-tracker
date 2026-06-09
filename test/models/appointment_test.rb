@@ -5,51 +5,39 @@ class AppointmentTest < ActiveSupport::TestCase
   ## status: scheduled, cancelled, completed
 
   test "is appointment valid with all required fields" do 
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
-    patient.save
-    provider = Provider.new(first_name: "John", last_name: "Doe", specialty: "Cardiology", email: "johndoe@gmail.com")
-    provider.save
-    appointment = Appointment.new(patient_id: patient.id, provider_id: provider.id, appointment_date: '06/01/2026', status: "scheduled")
+    appointment = appointments(:first_appointment)
     assert appointment.valid?
   end
 
   test "is invalid with missing patient_id" do
-    provider = Provider.new(first_name: "John", last_name: "Doe", specialty: "Cardiology", email: "johndoe@gmail.com")
-    provider.save
+    provider = providers(:peter)
     appointment = Appointment.new(provider_id: provider.id, appointment_date: '06/01/2026', status: "scheduled")
     assert_not appointment.valid?
   end
 
   test "is invalid with missing provider_id" do
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
-    patient.save
+    patient = patients(:mary)
     appointment = Appointment.new(patient_id: patient.id, appointment_date: '06/01/2026', status: "scheduled")
     assert_not appointment.valid?
   end
 
   test "is invalid with missing appointment_date" do
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
-    patient.save
-    provider = Provider.new(first_name: "John", last_name: "Doe", specialty: "Cardiology", email: "johndoe@gmail.com")
-    provider.save
+    patient = patients(:john)
+    provider = providers(:bruce)
     appointment = Appointment.new(patient_id: patient.id, provider_id: provider.id, status: "scheduled")
     assert_not appointment.valid?
   end
 
   test "is invalid with missing status" do 
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
-    patient.save
-    provider = Provider.new(first_name: "John", last_name: "Doe", specialty: "Cardiology", email: "johndoe@gmail.com")
-    provider.save
+    patient = patients(:mary)
+    provider = providers(:bruce)
     appointment = Appointment.new(patient_id: patient.id, provider_id: provider.id,appointment_date: '06/01/2026')
     assert_not appointment.valid?
   end
 
   test "is invalid with invalid status value" do 
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
-    patient.save
-    provider = Provider.new(first_name: "John", last_name: "Doe", specialty: "Cardiology", email: "johndoe@gmail.com")
-    provider.save
+    patient = patients(:john)
+    provider = providers(:peter)
     appointment = Appointment.new(patient_id: patient.id, provider_id: provider.id, appointment_date: '06/01/2026', status: "pending")
     assert_not appointment.valid?
   end

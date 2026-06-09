@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  specialty: MyString
-  email: MyString
+peter:
+  first_name: Peter
+  last_name: Parker
+  specialty: Spider-Man
+  email: peterparker@gmail.com
 
-two:
-  first_name: MyString
-  last_name: MyString
-  specialty: MyString
-  email: MyString
+bruce:
+  first_name: Bruce
+  last_name: Wayne
+  specialty: Batman
+  email: darkknight@gmail.com

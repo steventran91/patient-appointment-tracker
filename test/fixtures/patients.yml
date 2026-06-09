@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  date_of_birth: 2026-05-28
+mary:
+  first_name: Mary
+  last_name: Jane
+  email: maryjane420@gmail.com
+  date_of_birth: 2000-04-20
 
-two:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  date_of_birth: 2026-05-28
+john:
+  first_name: John
+  last_name: Doe
+  email: johndoe@gmail.com
+  date_of_birth: 1991-06-07
