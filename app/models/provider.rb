@@ -1,5 +1,5 @@
 class Provider < ApplicationRecord
-    before_create :generate_token
+    before_validation :generate_token, on: :create
 
     has_many :appointments
     has_many :patients, through: :appointments
