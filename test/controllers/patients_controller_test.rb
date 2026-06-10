@@ -26,11 +26,23 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "get patient by id patient not found" do 
+    get "/patients/99", headers: { 'Authorization' => "Bearer #{providers(:peter).token}"}
+    assert_response :not_found
+  end
+
   test "update patient info" do 
     patient = patients(:john)
     patch "/patients/#{patient.id}", headers: { 'Authorization' => "Bearer #{providers(:peter).token}"},
     params: {patient: {first_name: "Boruto", last_name: "Uzumaki", email: "7hokage@gmail.com", date_of_birth: '01/01/2000'}},
     as: :json
     assert_response :success
+  end
+
+  test "update patient info patient not found" do 
+    patch "/patients/99", headers: { 'Authorization' => "Bearer #{providers(:peter).token}"},
+    params: {patient: {first_name: "Boruto", last_name: "Uzumaki", email: "7hokage@gmail.com", date_of_birth: '01/01/2000'}},
+    as: :json
+    assert_response :not_found
   end
 end

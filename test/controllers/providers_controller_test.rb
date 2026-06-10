@@ -26,6 +26,11 @@ class ProvidersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    test "get provider by id provider not found" do 
+      get "/providers/99", headers: {'Authorization' => "Bearer #{providers(:peter).token}"}
+      assert_response :not_found
+    end
+
     test "update a provider" do 
       provider = providers(:peter)
       patch "/providers/#{provider.id}", headers: {'Authorization' => "Bearer #{providers(:peter).token}"},
@@ -34,9 +39,21 @@ class ProvidersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    test "update a provider provider not found" do 
+      patch "/providers/99", headers: {'Authorization' => "Bearer #{providers(:peter).token}"},
+      params: {provider: {first_name: "Peter", last_name: "Porker", specialty: "Spider-Man", email: "peterparker@gmail.com"}},
+      as: :json
+      assert_response :not_found
+    end
+
   test "delete a provider" do
     provider = Provider.create(first_name: "Tony Tony", last_name: "Chopper", specialty: "Medicine", email: "chopper@gmail.com")
     delete "/providers/#{provider.id}", headers: { 'Authorization' => "Bearer #{providers(:peter).token}" }
     assert_response :no_content
+  end
+
+  test "delete a provider provider not found" do 
+    delete "/providers/99", headers: { 'Authorization' => "Bearer #{providers(:peter).token}" }
+    assert_response :not_found
   end
 end
