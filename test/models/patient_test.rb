@@ -2,7 +2,7 @@ require "test_helper"
 
 class PatientTest < ActiveSupport::TestCase
   test "is valid with all required fields" do 
-    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420@gmail.com")
+    patient = Patient.new(first_name: "Mary", last_name: "Jane", email: "maryjane420blazeit@gmail.com")
     assert patient.valid?
   end
 
