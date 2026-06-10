@@ -5,9 +5,11 @@ peter:
   last_name: Parker
   specialty: Spider-Man
   email: peterparker@gmail.com
+  token: testtoken123
 
 bruce:
   first_name: Bruce
   last_name: Wayne
   specialty: Batman
   email: darkknight@gmail.com
+  token: testtoken456
